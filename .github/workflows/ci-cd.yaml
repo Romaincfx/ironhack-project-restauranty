@@ -31,18 +31,18 @@ jobs:
 
     - name: Build and Push auth Image
       run: |
-        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/resauranty_auth:latest ./resauranty_auth
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/resauranty_auth:latest
+        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/restauranty_auth:latest ./restauranty_auth
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/restauranty_auth:latest
 
     - name: Build and Push client Image
       run: |
-        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/resauranty_client:latest ./resauranty_client
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/resauranty_client:latest
+        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/restauranty_client:latest ./restauranty_client
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/restauranty_client:latest
 
     - name: Build and Push discounts Image
       run: |
-        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/resauranty_discounts:latest ./resauranty_discounts
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/resauranty_discounts:latest
+        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/restauranty_discounts:latest ./resauranty_discounts
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/restauranty_discounts:latest
 
   deploy:
     needs: build-and-push
