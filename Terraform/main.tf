@@ -48,7 +48,7 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 20.11"
 
-  cluster_name    = "my-eks-cluster"
+  cluster_name    = "romain-restauranty-cluser"
   cluster_version = "1.30"
 
   vpc_id          = module.vpc.vpc_id
