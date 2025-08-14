@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discounts-deployment
+  labels:
+    app: discounts
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: discounts
+  template:
+    metadata:
+      labels:
+        app: discounts
+    spec:
+      containers:
+        - name: discounts
+          image: romainconfavreux/restauranty_discounts:latest
+          ports:
+            - containerPort: 3001
+          envFrom:
+            - secretRef:
+                name: discounts-secrets
