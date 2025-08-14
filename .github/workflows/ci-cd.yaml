@@ -98,6 +98,6 @@ jobs:
     # Deploy to EKS
     - name: Deploy to EKS
       run: |
-        kubectl apply -f k8s/ # Adjust path to your deployment.yaml
-        
-#more to come
+        kubectl apply -R -f k8s/
+
+#more to come!
