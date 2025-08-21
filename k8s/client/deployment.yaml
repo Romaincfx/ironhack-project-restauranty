@@ -19,3 +19,13 @@ spec:
           image: romainconfavreux/restauranty_client:latest
           ports:
             - containerPort: 80
+          command: ["/bin/sh"]
+          args: ["/scripts/env-replace.sh"]
+          volumeMounts:
+            - name: env-replace-script
+              mountPath: /scripts
+      volumes:
+        - name: env-replace-script
+          configMap:
+            name: env-replace-script
+            defaultMode: 0755

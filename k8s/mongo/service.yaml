@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: redis
+  name: mongo
 spec:
   selector:
-    app: redis
+    app: mongo
   ports:
     - protocol: TCP
-      port: 6379
-      targetPort: 6379
-  clusterIP: None  # This ensures a stable DNS name within the cluster
+      port: 27017
+      targetPort: 27017
+  type: ClusterIP
