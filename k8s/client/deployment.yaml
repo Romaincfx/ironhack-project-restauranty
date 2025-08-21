@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: client
-          image: restaurantyacr2024.azurecr.io/restauranty_client:latest
+          image: romainconfavreux/restauranty_client:latest
           ports:
             - containerPort: 80

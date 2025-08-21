@@ -8,3 +8,9 @@ backend/*/.env
 backend/*/node_modules
 mobile/.expo
 Terraform/.terraform
+
+# Kubernetes secret files
+*.secret.yaml
+secrets/
+.env*
+!.env.example

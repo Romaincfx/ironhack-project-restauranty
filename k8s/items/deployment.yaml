@@ -19,3 +19,6 @@ spec:
           image: romainconfavreux/restauranty_items:latest
           ports:
             - containerPort: 3003
+          envFrom:
+            - secretRef:
+                name: items-secrets
