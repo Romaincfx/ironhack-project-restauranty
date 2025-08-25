@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Item = require('../models/Item.model')
 
-const { upload, uploadToAzureBlob } = require('../config/azure.config');
+const upload = require('../config/cloudinary.config');
 
 router.get("/", (req, res) => {
 
@@ -30,11 +30,9 @@ router.get("/:id", (req, res) => {
 router.post("/", upload.single("imagem"), async (req, res) => {
     try {
         const itemData = req.body;
-        let imageUrl = "";
 
         if (req.file) {
-            imageUrl = await uploadToAzureBlob(req.file);
-            itemData.image = [imageUrl];
+            itemData.image = [req.file.path]; // Cloudinary automatically provides the URL in req.file.path
         }
 
         const newItem = await Item.create(itemData);
@@ -50,8 +48,7 @@ router.put("/:id", upload.single("imagem"), async (req, res) => {
         const itemData = req.body;
 
         if (req.file) {
-            const imageUrl = await uploadToAzureBlob(req.file);
-            itemData.image = [imageUrl];
+            itemData.image = [req.file.path]; // Cloudinary automatically provides the URL in req.file.path
         }
 
         const updatedItem = await Item.findByIdAndUpdate(req.params.id, itemData, { new: true });

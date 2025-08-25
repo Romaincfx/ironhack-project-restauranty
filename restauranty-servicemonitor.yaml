@@ -1,0 +1,50 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: restauranty-services
+  namespace: default
+  labels:
+    app: restauranty
+    release: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: items-service
+  endpoints:
+  - port: http
+    path: /metrics
+    interval: 30s
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: restauranty-auth-service
+  namespace: default
+  labels:
+    app: restauranty
+    release: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: auth-service
+  endpoints:
+  - port: http
+    path: /metrics
+    interval: 30s
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: restauranty-discounts-service
+  namespace: default
+  labels:
+    app: restauranty
+    release: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: discounts-service
+  endpoints:
+  - port: http
+    path: /metrics
+    interval: 30s

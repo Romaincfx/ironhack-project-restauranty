@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Dietary = require('../models/dietary.model')
 
-const { upload, uploadToAzureBlob } = require('../config/azure.config');
+const upload = require('../config/cloudinary.config');
 
 router.get("/", (req, res) => {
 
@@ -32,10 +32,9 @@ router.post("/", upload.single("imagem"), async (req, res) => {
         // 1) start with everything sent in the body
         const dietaryData = { ...req.body };
 
-        // 2) if a file was uploaded, push its Azure URL onto dietaryData.image
+        // 2) if a file was uploaded, push its Cloudinary URL onto dietaryData.image
         if (req.file) {
-            const imageUrl = await uploadToAzureBlob(req.file);
-            dietaryData.image = [imageUrl];
+            dietaryData.image = [req.file.path]; // Cloudinary automatically provides the URL in req.file.path
         }
 
         // 3) create the new Dietary document

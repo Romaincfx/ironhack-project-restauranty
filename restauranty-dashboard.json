@@ -1,0 +1,111 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "Restaurant App Monitoring",
+    "tags": ["restauranty"],
+    "timezone": "browser",
+    "panels": [
+      {
+        "id": 1,
+        "title": "MongoDB Connection Status",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "mongo_connection_status",
+            "legendFormat": "{{service}}"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "mappings": [
+              {
+                "options": {
+                  "0": {
+                    "text": "Disconnected"
+                  },
+                  "1": {
+                    "text": "Connected"
+                  }
+                }
+              }
+            ],
+            "thresholds": {
+              "steps": [
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "green",
+                  "value": 1
+                }
+              ]
+            }
+          }
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": 2,
+        "title": "Total Items",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "items_total"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        }
+      },
+      {
+        "id": 3,
+        "title": "Total Users",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "users_total"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 8
+        }
+      },
+      {
+        "id": 4,
+        "title": "HTTP Request Rate",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(http_requests_total[5m])",
+            "legendFormat": "{{method}} {{route}}"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 8
+        }
+      }
+    ],
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    },
+    "refresh": "5s",
+    "schemaVersion": 30,
+    "version": 0
+  }
+}
